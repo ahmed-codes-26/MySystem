@@ -4,7 +4,7 @@ import { Session } from './models.js';
 import { config } from './config.js';
 export const COOKIE=config.NODE_ENV==='production'?'__Host-mysystem_session':'mysystem_session';
 const duration=7*24*60*60*1000;
-export const cookieOptions={httpOnly:true,secure:config.NODE_ENV==='production',sameSite:'lax',path:'/'};
+export const cookieOptions={httpOnly:true,secure:config.NODE_ENV==='production',sameSite:config.COOKIE_SAME_SITE,path:'/'};
 export async function issue(res,id) {
  const now=new Date();let ttl=duration;
  // Renewal must never recreate a session revoked by a concurrent logout.

@@ -1,5 +1,7 @@
 import { z } from 'zod';
 export const configuration = z.object({
+  COOKIE_SAME_SITE: z.enum(['lax','none']).default('lax'),
+  ADDITIONAL_CLIENT_ORIGINS: z.string().default('').transform(value=>value.split(',').map(v=>v.trim()).filter(Boolean)).refine(values=>values.every(value=>{try{return value===new URL(value).origin&&value.startsWith('https://');}catch{return false;}}),'Use comma-separated HTTPS origins.'),
   PORT: z.coerce.number().int().min(1).max(65535).default(5000),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   MONGODB_URI: z.string().regex(/^mongodb(?:\+srv)?:\/\//),

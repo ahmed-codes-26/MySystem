@@ -1,6 +1,6 @@
 {
   "scope": "Isolated test server; not a deployed penetration test",
-  "generatedAt": "2026-11-01T14:36:57.462Z",
+  "generatedAt": "2026-11-01T15:00:36.393Z",
   "routes": [
     {
       "method": "GET",

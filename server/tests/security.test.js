@@ -18,6 +18,7 @@ const json = { 'content-type': 'application/json', 'x-mysystem-request': '1' };
 test('CSRF: JSON/custom header and exact trusted Origin are required for unsafe browser requests', () => {
   assert.deepEqual(guard('POST', json), { status: 200, passed: true });
   assert.equal(guard('POST', { ...json, origin: local.CLIENT_ORIGIN }).passed, true);
+  assert.equal(guard('POST', { ...json, origin: local.CLIENT_ORIGIN, 'sec-fetch-site': 'cross-site' }).passed, true);
   for (const headers of [{ 'content-type': 'application/json' }, { ...json, origin: 'null' }, { ...json, origin: 'https://evil.invalid', host: 'evil.invalid' }, { ...json, origin: 'http://localhost:5173.evil.invalid' }, { ...json, 'sec-fetch-site': 'same-site' }, { ...json, 'sec-fetch-site': 'cross-site' }]) assert.equal(guard('POST', headers).status, 403);
   assert.equal(guard('POST', { ...json, 'content-type': 'text/plain' }).status, 415);
   assert.equal(guard('TRACE', json).status, 405);

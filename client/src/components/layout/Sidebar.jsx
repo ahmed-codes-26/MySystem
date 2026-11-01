@@ -8,9 +8,6 @@ export default function Sidebar({ open, close }) {
     <div className="nav-label">WORKSPACE</div><nav aria-label="Main navigation">
       <NavLink to="/" onClick={close}><Icon name="habits"/>Habit Tracking</NavLink>
       <NavLink to="/finance" onClick={close}><Icon name="finance"/>Finance</NavLink>
-      {[['history','History']].map(([icon,label]) => <Button variant="ghost" key={icon} disabled title={`${label} will be built in the next stage`}><Icon name={icon}/>{label}<small>Next up</small></Button>)}
-      <div className="nav-divider"/>
-      {[['calendar','Schedule']].map(([icon,label]) => <Button variant="ghost" key={icon} disabled><Icon name={icon}/>{label}<small>Coming soon</small></Button>)}
       <NavLink to="/passwords" onClick={close}><Icon name="lock"/>Passwords</NavLink>
     </nav>
     <div className="sidebar-bottom"><nav aria-label="Settings navigation"><NavLink to="/settings" onClick={close}><Icon name="settings"/>Settings</NavLink></nav><div className="sidebar-owner">AHMED ALI</div><Button variant="ghost" className="logout" onClick={async () => {try {await send('/auth/logout','POST');window.dispatchEvent(new Event('session-expired'));} catch {window.alert('Could not log out. Please try again.');}}}><Icon name="logout"/>Log out</Button></div>
