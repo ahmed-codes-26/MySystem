@@ -1,0 +1,246 @@
+{
+  "scope": "Isolated test server; not a deployed penetration test",
+  "generatedAt": "2026-11-01T14:36:57.462Z",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "authentication": "public"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login",
+      "authentication": "public"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/logout",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/habits",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/habits",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/habits/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/habits/:id/archive",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/habits/:id/restore",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/habits/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/entries",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/sleep",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/passwords",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/passwords/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/passwords",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/passwords/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/passwords/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/finance/settings",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/finance/settings",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/finance/overview",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/finance/categories",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/categories",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/finance/categories/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/categories/:id/archive",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/finance/transactions",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/transactions",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/finance/transactions/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/finance/transactions/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/transfers",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/finance/transfers/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/finance/goals",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/goals",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/finance/goals/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/goals/:id/archive",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/finance/budgets/:categoryId",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/finance/budgets/:categoryId",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/finance/recurring",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/recurring",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/finance/recurring/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/finance/recurring/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/recurring/:id/pay",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "GET",
+      "path": "/api/finance/owed",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/owed",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/finance/owed/:id",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/owed/:id/payment",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "POST",
+      "path": "/api/finance/owed/:id/settle",
+      "authentication": "401 without session verified"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/finance/owed/:id",
+      "authentication": "401 without session verified"
+    }
+  ]
+}

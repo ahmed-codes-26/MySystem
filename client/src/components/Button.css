@@ -1,0 +1,25 @@
+.btn { box-sizing: border-box; min-width: 0; display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; min-height: 36px; padding: 0 14px; border: 1px solid transparent; border-radius: 8px; font: inherit; font-size: 13px; font-weight: 500; line-height: 1.2; white-space: nowrap; text-decoration: none; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; color: var(--text); background: #fff; box-shadow: none; transition: background .15s, border-color .15s, transform .15s; }
+.btn--small { height: 32px; min-height: 32px; padding: 0 12px; font-size: 12px; }
+.btn--primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.btn--secondary { background: #fff; border-color: var(--border); color: var(--text); }
+.btn--ghost, .btn--icon { background: transparent; border: 0; }
+.btn--icon { height: 32px; min-height: 32px; width: 32px; min-width: 32px; flex-shrink: 0; padding: 0; }
+.btn--destructive { background: #fff; border-color: #c43b50; color: #c43b50; }
+.btn--destructive.btn--confirm { background: #c43b50; color: #fff; }
+.btn[aria-pressed="true"]:not(.btn--icon) { border-color: var(--primary); }
+.btn--icon[aria-pressed="true"] { color: var(--primary); }
+.btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.btn:active:not(:disabled) { transform: scale(.96); }
+@media (hover: hover) and (pointer: fine) {
+ .btn--primary:hover:not(:disabled) { background: var(--primary-hover); border-color: var(--primary-hover); }
+ .btn--secondary:hover:not(:disabled), .btn--ghost:hover:not(:disabled), .btn--icon:hover:not(:disabled) { background: var(--surface); }
+ .btn--destructive:hover:not(:disabled) { background: #c43b50; border-color: #c43b50; color: #fff; }
+ .btn--destructive.btn--confirm:hover:not(:disabled) { background: #a72d40; color: #fff; }
+}
+.btn-spinner { width: 13px; height: 13px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: button-spin .7s linear infinite; }
+.btn-tooltip { position: fixed; transform: translateX(-50%); z-index: 300; pointer-events: none; max-width: min(240px,calc(100vw - 16px)); padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: #fff; color: var(--text); font-size: 11px; box-shadow: 0 2px 8px #11111410; }
+@keyframes button-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn-spinner { animation: none; } }
+
+.btn--destructive:active:not(:disabled) { background: #a72d40; border-color: #a72d40; color: #fff; }

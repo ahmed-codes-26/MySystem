@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { dailyScore, weeklyScore, heatmapLevel, activeHabits, nextStatus } from '../src/utils/scoring.js';
+const entry = (status,weightSnapshot = 1) => ({status,weightSnapshot});
+test('all done scores 100; all missed scores zero', () => { assert.equal(dailyScore([entry('done',3),entry('done')]),100); assert.equal(dailyScore([entry('missed',3),entry('missed')]),0); });
+test('mixed scores use saved weights and round to whole numbers', () => assert.equal(dailyScore([entry('done',3),entry('missed')]),75));
+test('skipped and empty days do not count', () => { assert.equal(dailyScore([entry('done'),entry('skipped',3)]),100); assert.equal(dailyScore([entry('skipped')]),null); assert.equal(dailyScore([]),null); });
+test('later weight changes do not affect a stored snapshot', () => { const habit = {weight:1}; const saved = entry('done',habit.weight); habit.weight = 3; assert.equal(dailyScore([saved,entry('missed')]),50); });
+test('weekly averages exclude gaps but include zero', () => { assert.equal(weeklyScore([100,null,0,50]),50); assert.equal(weeklyScore([null,null]),null); });
+test('heatmap levels cover empty, partial and complete days', () => { assert.equal(heatmapLevel(0,6),0); assert.equal(heatmapLevel(1,10),1); assert.equal(heatmapLevel(3,6),3); assert.equal(heatmapLevel(6,6),5); assert.equal(heatmapLevel(0,0),0); });
+test('archive date stops active count while past history remains active', () => { const habits = [{createdOn:'2026-10-01',archivedOn:'2026-10-10'}]; assert.equal(activeHabits(habits,'2026-09-30').length,0); assert.equal(activeHabits(habits,'2026-10-09').length,1); assert.equal(activeHabits(habits,'2026-10-10').length,0); });
+test('cell click cycle always advances one step', () => { assert.equal(nextStatus(null),'done'); assert.equal(nextStatus('done'),'skipped'); assert.equal(nextStatus('skipped'),'missed'); assert.equal(nextStatus('missed'),null); });

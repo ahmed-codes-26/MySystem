@@ -1,0 +1,17 @@
+{
+  "scope": "Temporary Atlas test database; 5,000 synthetic history rows, not owner data",
+  "generatedAt": "2026-11-01T14:33:18.779Z",
+  "ledgerRows": 5025,
+  "legacyLedgerBytes": 5207668,
+  "groupedLedgerBytes": 280,
+  "overviewMilliseconds": [
+    285,
+    295,
+    288
+  ],
+  "pagination": {
+    "returned": 20,
+    "documentsExamined": 20,
+    "keysExamined": 20
+  }
+}
