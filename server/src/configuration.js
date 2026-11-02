@@ -9,7 +9,7 @@ export const configuration = z.object({
   ADMIN_PASSWORD_HASH: z.string().regex(/^\$2[aby]\$(1[0-5])\$[./A-Za-z0-9]{53}$/),
   VAULT_ENCRYPTION_KEY: z.string().regex(/^[a-f0-9]{64}$/),
   APP_TIMEZONE: z.string().max(60).default('Asia/Karachi').refine(value => { try { new Intl.DateTimeFormat('en', { timeZone: value }); return true; } catch { return false; } }),
-  CLIENT_ORIGIN: z.string().url().refine(value => { const url = new URL(value); return !url.username && !url.password && ['http:', 'https:'].includes(url.protocol) && (value === url.origin || value === url.origin + '/'); }).transform(value => new URL(value).origin),
+  CLIENT_ORIGIN: z.string().url().refine(value => { try { const url = new URL(value); return !url.username && !url.password && ['http:', 'https:'].includes(url.protocol) && (value === url.origin || value === url.origin + '/'); } catch { return false; } }, 'Use a complete origin including http:// or https://.').transform(value => new URL(value).origin),
 }).superRefine((value, context) => {
   const options = new URLSearchParams(value.MONGODB_URI.split('?')[1] || '');
   const insecure = [...options].some(([key, option]) => (['tls', 'ssl'].includes(key.toLowerCase()) && option === 'false') || (['tlsinsecure', 'tlsallowinvalidcertificates', 'tlsallowinvalidhostnames'].includes(key.toLowerCase()) && option !== 'false'));

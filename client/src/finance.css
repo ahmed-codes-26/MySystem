@@ -66,9 +66,8 @@
 .finance-empty { padding: 32px 20px !important; color: var(--muted); text-align: center; }
 .finance-pagination { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 14px 16px; font-size: 11px; color: var(--muted); }
 .finance-pagination > div { display: flex; gap: 6px; }
-.finance-dialog { width: min(560px, calc(100vw - 32px)); overflow-x: hidden; overflow-y: auto; scrollbar-width: none; border-radius: 8px; overscroll-behavior: contain; }
-.finance-dialog::-webkit-scrollbar, .finance-dialog *::-webkit-scrollbar { display: none; }
-.finance-dialog * { scrollbar-width: none; }
+.finance-dialog { width: min(560px, calc(100vw - 32px)); overflow-x: hidden; overflow-y: auto; border-radius: 8px; overscroll-behavior: contain; }
+
 .finance-dialog-content, .finance-dialog-content > * { min-width: 0; max-width: 100%; }
 .finance-dialog-content { padding: 24px; display: flex; flex-direction: column; gap: 18px; }
 .finance-dialog .finance-dialog-content { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }

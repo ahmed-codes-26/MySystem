@@ -421,7 +421,10 @@ html, body, #root { height: 100%; overflow: hidden; }
 @media (max-width: 767px) { .habit-form { grid-template-columns: 1fr; } .habit-editor, .habit-list { padding: 18px; } .manage-habit { gap: 8px; flex-wrap: wrap; } .habit-row-actions { gap: 5px; } .manage-habit > strong { font-size: 12px; } }
 .sidebar-bottom > nav { margin-bottom: 12px; }
 .settings-heading { padding: 3px 0; }
-.themed-dialog { border: 0; padding: 0; margin: auto; background: transparent; color: inherit; max-width: calc(100vw - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; }
+.themed-dialog { position: fixed; inset: 0; border: 0; padding: 0; margin: 16px auto auto; background: transparent; color: inherit; text-align: left; max-width: calc(100vw - 32px); max-height: calc(100dvh - 32px); overflow: auto; overscroll-behavior: contain; overflow-wrap: anywhere; }
+html:has(.themed-dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
+.themed-dialog > * { min-width: 0; max-width: 100%; }
+.themed-dialog .app-select .theme-options { position: static; width: 100%; min-width: 0; max-width: 100%; margin-top: 6px; }
 .themed-dialog::backdrop { background: #11111455; }
 .edit-habit-dialog { width: 760px; }
 .edit-habit-dialog .habit-editor { width: 100%; }

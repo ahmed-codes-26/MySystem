@@ -156,7 +156,7 @@ h1, h2, .breadcrumb, .donut strong, .password-stat strong, .score-badge strong {
 .chart-line { stroke-width: 2.5; }
 .consistency-scroll { overflow-x: auto; overflow-y: hidden; padding: 3px 2px 12px; margin-top: 20px; }
 .consistency-scroll:focus-visible { outline: 1px solid var(--primary); outline-offset: 3px; }
-.consistency-grid { width: max(100%, 791px); max-width: none; margin-top: 0; grid-template-rows: repeat(7, 11px); grid-template-columns: repeat(53, 11px); gap: 4px; justify-content: space-between; }
+.consistency-grid { width: max(100%, calc(var(--heatmap-columns, 53) * 15px - 4px)); max-width: none; margin-top: 0; grid-template-rows: repeat(7, 11px); grid-template-columns: repeat(var(--heatmap-columns, 53), 11px); gap: 4px; justify-content: space-between; }
 @media (max-width: 767px) {
  .cross-chart svg, .cross-chart.compact svg { height: 200px; }
  .week-card > .card-heading { flex-wrap: wrap; gap: 8px; }

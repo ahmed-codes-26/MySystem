@@ -36,6 +36,14 @@ test('production policy blocks third-party scripts, framing and object embedding
   assert.equal(helmetOptions(false).strictTransportSecurity, false);
 });
 const environment = { NODE_ENV: 'production', MONGODB_URI: 'mongodb+srv://example.invalid/database', JWT_SECRET: 'test-only-JWT-secret-with-sufficient-variety-123456', ADMIN_PASSWORD_HASH: '$2b$12$' + 'a'.repeat(53), VAULT_ENCRYPTION_KEY: '0123456789abcdef'.repeat(4), CLIENT_ORIGIN: 'https://app.example.invalid' };
+test('malformed origins return validation errors without throwing',()=>{
+  for(const CLIENT_ORIGIN of ['mysystem.ahmedcodes.pro','','https://','not a url']) {
+    const result=configuration.safeParse({...environment,CLIENT_ORIGIN});
+    assert.equal(result.success,false);
+    assert.ok(result.error.issues.some(issue=>issue.path[0]==='CLIENT_ORIGIN'));
+  }
+  assert.equal(configuration.parse({...environment,CLIENT_ORIGIN:'https://mysystem.ahmedcodes.pro/'}).CLIENT_ORIGIN,'https://mysystem.ahmedcodes.pro');
+});
 test('production configuration rejects weak keys, insecure database TLS and non-origin client URLs', () => {
   assert.equal(configuration.safeParse(environment).success, true);
   for (const change of [{ CLIENT_ORIGIN: 'http://app.example.invalid' }, { CLIENT_ORIGIN: 'https://app.example.invalid/path' }, { CLIENT_ORIGIN: 'https://user:password@app.example.invalid' }, { MONGODB_URI: 'mongodb+srv://example.invalid/db?tls=false' }, { MONGODB_URI: 'mongodb+srv://example.invalid/db?tlsAllowInvalidCertificates=true' }, { MONGODB_URI: 'mongodb://example.invalid/db' }, { JWT_SECRET: 'a'.repeat(32) }, { VAULT_ENCRYPTION_KEY: '0'.repeat(64) }, { ADMIN_PASSWORD_HASH: '$2b$04$' + 'a'.repeat(53) }, { APP_TIMEZONE: 'invalid-zone' }, { PORT: 70000 }]) assert.equal(configuration.safeParse({ ...environment, ...change }).success, false);
